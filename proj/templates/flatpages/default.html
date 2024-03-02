@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %} {% endblock title %}</title>
+        {% load static %}
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <button {% block 1 %}{% endblock 1 %}>лого</button>
+                <button {% block 2 %}{% endblock 2 %}></button>
+                <div class="input-wrapper">
+                <input type="text">
+                <button {% block 3 %}{% endblock 3 %}>поиск</button>
+                </div>
+                <button {% block 4 %}{% endblock 4 %}></button>
+                <form action="{% url 'product' %}"><button {% block 5 %}{% endblock 5 %}>каталог</button></form>
+                {% block 6 %}<button ></button>{% endblock 6 %}
+                <form action="/main/about/"><button {% block 7 %}{% endblock 7 %}>о нас</button></form>
+                <button {% block 8 %}{% endblock 8 %}></button>
+                {% block 9 %}<form action="{% url 'login' %}"><button >войти</button></form>{% endblock 9 %}
+
+            </div>
+        </div>
+    </nav>
+{% block container-up %}
+        <div class="container-up">
+            <div class="nav-content-up">
+                <p {% block 15 %}class="button-up"{% endblock 15 %}>сортировка по дате:</p>
+                <button {% block 16 %}class="button-up"{% endblock 16 %}>по возрастанию</button>
+                <button {% block 17 %}class="button-up"{% endblock 17 %}>по убыванию</button>
+            </div>
+        </div>
+{% endblock container-up %}
+
+{% block container-edit %}
+        <div class="container-up">
+            <div class="nav-content-up">
+                <form action="{% url 'product_create' %}"><button {% block 18 %}class="button-up"{% endblock 18 %}>добавить</button></form>
+                <form action="{% url 'product_update' product.id %}"><button {% block 19 %}class="button-up"{% endblock 19 %}>изменить</button></form>
+                <form action="{% url 'product_delete' product.id %}"><button {% block 20 %}class="button-up"{% endblock 20 %}>удалить</button></form>
+            </div>
+        </div>
+{% endblock container-edit %}
+
+        <!-- Page content-->
+           {% block content %}
+           {{ flatpage.content }}
+           {% endblock content %}
+
+{% block container-down %}
+        <div class="container-down">
+            <div class="nav-content-down">
+                <button {% block 10 %}class="button-down"{% endblock 10 %}>папоротники</button>
+                <button {% block 11 %}class="button-down"{% endblock 11 %}>магнолии</button>
+                <button {% block 12 %}class="button-down"{% endblock 12 %}>хвойные</button>
+                <button {% block 13 %}class="button-down"{% endblock 13 %}>яблони</button>
+                <button {% block 14 %}class="button-down"{% endblock 14 %}>водоросли</button>
+
+            </div>
+        </div>
+{% endblock container-down %}
+
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+products
+{% endblock title %}
+
+{% block content %}
+   <h1>Все продуты</h1>
+   <hr>
+   {% if products %}
+       <table class="table-bordered" width="100%">
+           <tr>
+               <th>название_продукта</th>
+               <th>дата_начала</th>
+               <th>стоимость</th>
+               <th>наим_колво_в_группе</th>
+               <th>наиб_колво_в_группе</th>
+               <th>препод</th>
+               <th>изменить новость</th>
+               <th>удалить новость</th>
+               <th>Категория</th>
+           </tr>
+           {% for product in products %}
+
+           <tr align="left">
+               <td width="20%">{{ products.nameprod }}</td>
+               <td width="10%">{{ products.datestart }}</td>
+               <td width="25%">{{ products.price }}</td>
+               <td width="25%">{{ products.kolvomin }}</td>
+               <td width="25%">{{ products.kolvomax }}</td>
+               <td width="5%">{{ products.author.user.username }}</td>
+               <td width="10%"><a href="/products/{{product.id}}/edit/">изменить</a></td>
+               <td width="10%"><a href="/products/{{product.id}}/delete/">удалить</a></td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>продуктов нет!</h2>
+   {% endif %}
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+   {{ page_obj.number }}
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+
+<p><a href="/products/create/">добавить продукт</a></p>
+
+{% endblock content %}
+
